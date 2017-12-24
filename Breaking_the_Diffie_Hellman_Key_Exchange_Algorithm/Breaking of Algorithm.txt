@@ -1,0 +1,37 @@
+
+
+BREAKING OF ALGORITHM
+
+publickey = raw_input("Enter the public key: ")
+generator = raw_input("Enter the generator: ")
+asent = raw_input("Enter the value sent by A: ")
+bsent = raw_input("Enter the value sent by B: ")
+asent = int(asent)
+bsent = int(bsent)
+i=99999
+count = 0
+while i<999999:
+    j=99999
+    while j<999999:
+        temp1 = (pow(int(asent),int(i)))%int(publickey)
+        temp2 = (pow(int(bsent),int(j)))%int(publickey)
+        if temp1 == temp2:
+            temp3 = (pow(int(generator),int(i)))%int(publickey)
+            temp4 = (pow(int(generator),int(j)))%int(publickey)
+            temp3 = int(temp3)
+            temp4 = int(temp4)
+            i = int(i)
+            j = int(j)
+            print i,j
+            if temp3 == bsent:
+                if temp4 == asent:
+                    print "The combination ",i," and ",j," can be a pair of private keys and the message is: ",temp1
+                    count = count+1
+            if asent != bsent:
+                if temp3 == asent:
+                    if temp4 == bsent:
+                        print "The combination ",i," and ",j," can be a pair of private keys"
+                        count = count + 1
+        j = j + 1
+    i = i + 1
+print count

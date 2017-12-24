@@ -1,0 +1,7 @@
+parent(John, Alice).
+parent(John, Jill).
+parent(Jill, Alex).
+sibling(Alice, Edward).
+sibling(Jill, Mary).
+female(Mary).
+son(X,Y) :- parent(Y,Z), sibling(Z,X), not female(X).

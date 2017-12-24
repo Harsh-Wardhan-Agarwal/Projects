@@ -1,0 +1,71 @@
+
+
+BREAKING THE ALGORITHM WITH THREADS (PARALLELISM):
+
+import threading
+import time
+exitFlag = 0
+class myThread (threading.Thread):
+    def __init__(self, threadID, name,i,j,publickey,generator,asent,bsent,v1,v2):
+        threading.Thread.__init__(self)
+        self.threadID = threadID
+        self.name = name
+        self.i = i
+        self.j = j
+        self.publickey = publickey
+        self.generator = generator
+        self.asent = asent
+        self.bsent = bsent
+        self.v1 = v1
+        self.v2 = v2
+        
+    def run(self):
+        print "Starting " + self.name
+        #print_time(self.name, self.counter, 5)
+        code(self.name,self.i,self.j,self.publickey,self.generator,self.asent,self.bsent,self.v1,self.v2)
+        print "Exiting " + self.name
+def code(threadName,i,j,publickey,generator,asent,bsent,v1,v2):
+    while i<v1:
+        j=2
+        while j<v2:
+            temp1 = (pow(int(asent),int(i)))%int(publickey)
+            temp2 = (pow(int(bsent),int(j)))%int(publickey)
+            if temp1 == temp2:
+                temp3 = (pow(int(generator),int(i)))%int(publickey)
+                temp4 = (pow(int(generator),int(j)))%int(publickey)
+                temp3 = int(temp3)
+                temp4 = int(temp4)
+                #print i,j
+                i = int(i)
+                j = int(j)
+                if temp3 == bsent:
+                    if temp4 == asent:
+                        print "The combination ",i," and ",j," can be a pair of private keys and the message is: ",temp1
+                        #count = count+1
+                if asent != bsent:
+                    if temp3 == asent:
+                        if temp4 == bsent:
+                            print "The combination ",i," and ",j," can be a pair of private keys"
+                            #count = count + 1
+            j = j + 1
+        i = i + 1
+publickey = raw_input("Enter the public key: ")
+generator = raw_input("Enter the generator: ")
+asent = raw_input("Enter the value sent by A: ")
+bsent = raw_input("Enter the value sent by B: ")
+asent = int(asent)
+bsent = int(bsent)
+i=2
+j=2
+# Create new threads
+thread1 = myThread(1, "Thread-1",2,2,publickey,generator,asent,bsent,255,1024)
+thread2 = myThread(2, "Thread-2",256,2,publickey,generator,asent,bsent,511,1024)
+thread3 = myThread(3, "Thread-3",512,2,publickey,generator,asent,bsent,767,1024)
+thread4 = myThread(4, "Thread-4",768,2,publickey,generator,asent,bsent,1024,1024)
+
+# Start new Threads
+thread1.start()
+thread2.start()
+thread3.start()
+thread4.start()
+print "Exiting Main Thread"
