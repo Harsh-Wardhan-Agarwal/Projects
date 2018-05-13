@@ -1,0 +1,31 @@
+AMS560 - Big Data Systems, Algorithms and Networs (Spring, 2018)
+Course Project - Group 8
+
+Members:
+Harsh Wardhan Agarwal
+Rishabh Srivastava
+Ritu Agarwal
+-------------------------------------------------------------------
+
+
+CODE EXECUTION INSTRUCTIONS:
+-------------------------------
+
+Code developed in python 2.7
+-------------------------------
+
+
+Code Files:
+1) prologMapReduce.py -> To run the task using pure MapReduce (Serial MapReduce)
+2) prologMapReduce_2.py -> To run the task using MapReduce with multi-processing(Parallel MapReduce)
+
+
+Linux Terminal Command:
+$ python prologMapReduce.py <input_filename>
+
+Sample commands:
+$ python prologMapReduce.py input_100.txt
+$ python prologMapReduce.py input_200.txt
+$ python prologMapReduce_2.py input_100.txt
+$ python prologMapReduce_2.py input_200.txt
+
